@@ -1,0 +1,13 @@
+{
+    "name": "soa/php",
+    "authors": [
+        {
+            "name": "Ronypa",
+            "email": "ronxrpaniaguach@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.3.5",
+        "webonyx/graphql-php": "^0.13.1"
+      }
+}

@@ -21,6 +21,7 @@ const RootMutation = new GraphQLObjectType({
             },
             async resolve(parent, args) {
                 let order = args.order
+                delete order.id
                 let result = await Models.orders
                     .create(order)
                     .then(() => {

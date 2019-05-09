@@ -63,14 +63,15 @@ try {
 					$db_connection = pg_connect("host=isilo.db.elephantsql.com dbname=ztetdqoh user=ztetdqoh 
 					password=CNmtyv-H9nQXTjlaEXD7knm97CaOr1sc");
                     $user = $args['user'];
-					$values = $user['id'].",'".$user['firstname']."','".$user['lastname']."','"
-					.$user['username']."','".base64_encode($user['password'])."'";
+                    $values = $user['id'].",'".$user['firstname']."','".$user['lastname'].
+                    "','".base64_encode($user['password'])."'";
                     pg_send_query($db_connection, 
-                    "insert into users(id, firstname, lastname, username, password) 
+                    "insert into users(id, firstname, lastname, password) 
                     values (".$values.")");
                     $result = pg_result_error(pg_get_result($db_connection));
-                    if($result == "")
+                    if($result == ""){
                         return json_decode("{\"status\":0, \"info\":\"created\"}");
+                    }
                     return json_decode("{\"status\":-1, \"info\":\"error\"}");
                 }
             ],
@@ -89,8 +90,9 @@ try {
 					"', password = '".base64_encode($user['password'])."'
                     where id = ".$user['id']);
                     $result = pg_result_error(pg_get_result($db_connection));
-                    if($result == "")
+                    if($result == ""){
                         return json_decode("{\"status\":0, \"info\":\"updated\"}");
+                    }                        
                     return json_decode("{\"status\":-1, \"info\":\"error\"}");
                 }
             ],
@@ -107,9 +109,10 @@ try {
                     "delete from users
                     where id = ".$id);
                     $result = pg_result_error(pg_get_result($db_connection));
-                    if($result == "")
+                    if($result == ""){
                         return json_decode("{\"status\":0, \"info\":\"deleted\"}");
-                    return json_decode("{\"status\":-1, \"info\":\"error\"}");
+                    }                
+                    return json_decode("{\"info\":\"error\"}");
                 }
             ]
         ],

@@ -14,7 +14,6 @@ $userType = new ObjectType([
         'id' => Type::int(),
         'firstname' => Type::string(),
         'lastname' => Type::string(),
-        'username' => Type::string(),
         'password' => Type::string()
     ]
 ]);
@@ -26,7 +25,6 @@ $inputUserType = new InputObjectType([
         'id' => Type::int(),
         'firstname' => Type::string(),
         'lastname' => Type::string(),
-        'username' => Type::string(),
         'password' => Type::string()
     ]
 ]);

@@ -1,29 +1,64 @@
+import {
+  GetUsers,
+  CreateUser,
+  UpdateUser,
+  DeleteUser,
+  Login
+} from "./users-handler";
+import TokenValidation from "../token-validation"
 
-import { GetUsers, CreateUser, UpdateUser, DeleteUser } from './users-handler'
-
-const rootUri = "/CompraTEC/users"
+const rootUri = "/CompraTEC/users";
 
 function UsersRoute(server) {
   server.route([
     {
       method: "GET",
       path: rootUri,
-      handler: request => GetUsers(request)
+      handler: (request, response) => {
+        let validation = TokenValidation(request);
+        if (validation) {
+          return validation;
+        }
+        return GetUsers(request, response);
+      }
     },
     {
       method: "POST",
       path: rootUri,
-      handler: request => CreateUser(request)
+      handler: (request, response) => {
+        let validation = TokenValidation(request);
+        if (validation) {
+          return validation;
+        }
+        return CreateUser(request, response);
+      }
     },
     {
       method: "PUT",
       path: rootUri,
-      handler: request => UpdateUser(request)
+      handler: (request, response) => {
+        let validation = TokenValidation(request);
+        if (validation) {
+          return validation;
+        }
+        return UpdateUser(request, response);
+      }
     },
     {
       method: "DELETE",
       path: rootUri,
-      handler: request => DeleteUser(request)
+      handler: (request, response) => {
+        let validation = TokenValidation(request);
+        if (validation) {
+          return validation;
+        }
+        return DeleteUser(request, response);
+      }
+    },
+    {
+      method: "POST",
+      path: "/CompraTEC/login",
+      handler: (request, response) => Login(request, response)
     }
   ]);
 }

@@ -17,9 +17,9 @@ UsersRoute(server)
 // Add the route
 server.route({
   method: "GET",
-  path: "/hello",
+  path: "/",
   handler: function(request, h) {
-    return "<h1>hello world</h1>";
+    return "<h1>Welcome to CompraTEC</h1>";
   }
 });
 
